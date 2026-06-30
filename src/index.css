@@ -1,3 +1,10 @@
+/* Estilos globais da aplicação.
+A identidade visual segue a mesma linha da Landing Page TCC e das entregas anteriores:
+- verde escuro institucional;
+- verde Bootstrap/success como cor de apoio;
+- fundo claro;
+- cards com sombra suave;
+- bordas arredondadas. */
 :root {
   font-family:
     Inter,
@@ -6,17 +13,40 @@
     BlinkMacSystemFont,
     "Segoe UI",
     sans-serif;
-  color: #1f2937;
-  background-color: #f8fbff;
+  color: #212529;
+  background-color: #f8f9fa;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --pnp-green-dark: #14532d;
+  --pnp-green: #198754;
+  --pnp-green-darker: #081c15;
+  --pnp-green-soft: #d1e7dd;
+  --pnp-background: #f8f9fa;
+  --pnp-text: #212529;
+}
+
+/* Correção geral de largura.
+Ajuda a evitar espaço lateral indesejado causado por elementos ultrapassando a largura da tela. */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  min-width: 320px;
-  margin: 0;
+  overflow-x: hidden;
+  background-color: var(--pnp-background);
+  color: var(--pnp-text);
 }
 
 button,
@@ -24,4 +54,99 @@ input,
 select,
 textarea {
   font: inherit;
+}
+
+.app-page {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-content {
+  flex: 1;
+}
+
+/* Cabeçalho inspirado no hero da landing page TCC.
+O gradiente verde mantém continuidade visual com as entregas anteriores. */
+.app-header {
+  color: #ffffff;
+  background:
+    linear-gradient(135deg, rgba(20, 83, 45, 0.94), rgba(25, 135, 84, 0.88)),
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.25), transparent 30%);
+}
+
+.app-header-badge {
+  color: var(--pnp-green-dark);
+  background-color: #ffffff;
+}
+
+.text-accent {
+  color: var(--pnp-green-soft);
+}
+
+.app-footer {
+  color: #ffffff;
+  background-color: var(--pnp-green-dark);
+}
+
+/* Estilo base para os cards.
+Esse padrão mantém a mesma leitura visual da Entrega 03. */
+.card {
+  border: 1px solid var(--bs-border-color);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0.75rem 1.75rem rgba(0, 0, 0, 0.12) !important;
+}
+
+.section-title {
+  color: var(--pnp-green-dark);
+}
+
+/* Ícones usados nos cards de resumo, no loading e nos blocos explicativos.
+A classe centraliza o ícone e mantém um padrão visual reaproveitável. */
+.summary-icon,
+.loading-icon,
+.info-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.summary-icon,
+.info-icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 1rem;
+  color: var(--pnp-green);
+  background-color: rgba(25, 135, 84, 0.12);
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.summary-icon-danger {
+  color: #dc3545;
+  background-color: rgba(220, 53, 69, 0.1);
+}
+
+.loading-card {
+  max-width: 620px;
+}
+
+.loading-icon {
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 1.5rem;
+  color: var(--pnp-green);
+  background-color: rgba(25, 135, 84, 0.12);
+  font-size: 2.2rem;
+}
+
+.indicador-card {
+  height: 100%;
 }

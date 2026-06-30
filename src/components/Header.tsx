@@ -1,33 +1,25 @@
-// Este componente concentra o cabeçalho da aplicação.
-// Deixo essa parte separada para manter o App.tsx mais limpo
-// seguindo a mesma ideia de modularização usada nas entregas anteriores.
+// Componente responsável pelo cabeçalho principal da aplicação.
+// A estrutura segue o padrão visual usado na Entrega 03, com hero verde,
+// badge de protótipo e texto conectando a tarefa ao contexto do TCC.
 function Header() {
   return (
-    <header className="app-header border-bottom bg-white">
-      <nav className="container py-3">
-        <div className="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
-          <div>
-            {/* Este badge identifica a atividade e também mostra o uso do Bootstrap Icons. */}
-            <span className="badge rounded-pill text-bg-primary mb-2">
-              <i className="bi bi-ui-checks-grid me-2"></i>
-              Tarefa Front-End 04
-            </span>
+    <header className="app-header">
+      <div className="container py-5">
+        <span className="badge rounded-pill app-header-badge mb-3">
+          <i className="bi bi-flask me-2"></i>
+          Protótipo experimental
+        </span>
 
-            <h1 className="h3 fw-bold mb-1">
-              Formulário de Sugestão de Indicador PNP
-            </h1>
+        <h1 className="display-5 fw-bold mb-3">
+          Formulário de Sugestão de Indicador PNP
+        </h1>
 
-            <p className="text-secondary mb-0">
-              Formulário React com comunicação entre componentes, estado e useEffect.
-            </p>
-          </div>
-
-          {/* Este ícone reforça visualmente o tema de indicadores e análise de dados. */}
-          <div className="app-header-icon">
-            <i className="bi bi-bar-chart-line"></i>
-          </div>
-        </div>
-      </nav>
+        <p className="lead text-accent mb-0">
+          Interface experimental para coletar sugestões de indicadores relacionados
+          ao projeto de TCC sobre ingestão, tratamento, análise e disponibilização
+          de dados da Plataforma Nilo Peçanha.
+        </p>
+      </div>
     </header>
   );
 }

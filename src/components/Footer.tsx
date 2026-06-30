@@ -1,15 +1,12 @@
-// Este componente representa o rodapé da aplicação.
-// Separei o rodapé em um componente próprio para facilitar manutenção
-// e para deixar a estrutura visual mais organizada.
+// Componente responsável pelo rodapé da aplicação.
+// Mantive o mesmo padrão textual e visual usado na Entrega 03,
+// adaptando apenas o nome da tarefa atual.
 function Footer() {
   return (
-    <footer className="border-top bg-white mt-5">
+    <footer className="app-footer">
       <div className="container py-4">
-        {/* Este texto conecta a tarefa ao contexto do TCC e deixa claro o objetivo acadêmico do projeto. */}
-        <p className="text-secondary small mb-0">
-          <i className="bi bi-mortarboard me-2"></i>
-          Projeto desenvolvido para a Tarefa Front-End 04, mantendo relação com o
-          TCC sobre análise e disponibilização de dados da Plataforma Nilo Peçanha.
+        <p className="mb-0">
+          Tarefa 4 - Front-End | Formulário React com Comunicação entre Componentes
         </p>
       </div>
     </footer>

@@ -3,8 +3,8 @@
 // onde os dados podem demorar alguns segundos para chegar de uma API.
 function Loading() {
   return (
-    <main className="container py-5">
-      <section className="loading-card card border-0 shadow-sm mx-auto">
+    <section className="container py-5">
+      <div className="loading-card card shadow-sm mx-auto">
         <div className="card-body text-center p-5">
           {/* Este ícone representa visualmente o estado de espera durante o carregamento. */}
           <div className="loading-icon mb-3">
@@ -20,11 +20,11 @@ function Loading() {
 
           {/* A barra animada usa classes do Bootstrap para reforçar a ideia de carregamento. */}
           <div className="progress" role="progressbar" aria-label="Carregamento inicial">
-            <div className="progress-bar progress-bar-striped progress-bar-animated w-100"></div>
+            <div className="progress-bar progress-bar-striped progress-bar-animated bg-success w-100"></div>
           </div>
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
   );
 }
 

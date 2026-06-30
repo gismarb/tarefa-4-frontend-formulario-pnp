@@ -11,18 +11,17 @@ import { indicadoresIniciais } from './data/indicadoresIniciais';
 import type { Indicador } from './types/Indicador';
 
 function App() {
-  // Aqui mantenho a lista de indicadores no componente principal.
-  // Essa lista será carregada inicialmente por uma simulação de API
-  // e depois também receberá os novos indicadores enviados pelo formulário.
+  // Estado responsável por armazenar a lista de indicadores exibidos na tela.
+  // O useState permite que a interface seja atualizada automaticamente quando a lista mudar.
   const [indicadores, setIndicadores] = useState<Indicador[]>([]);
 
-  // Este estado controla se a aplicação ainda está em carregamento.
-  // Ele permite exibir o componente Loading antes de mostrar o conteúdo principal.
+  // Estado responsável por controlar a exibição do carregamento inicial.
+  // Ele simula uma situação real em que os dados ainda estariam sendo buscados de uma API.
   const [carregando, setCarregando] = useState(true);
 
-  // Este useEffect simula uma busca inicial de dados.
-  // O array vazio no final indica que esse efeito deve executar apenas uma vez,
-  // logo após a primeira renderização do componente App.
+  // Este useEffect simula a busca inicial de dados.
+  // O array vazio faz com que o efeito seja executado apenas uma vez,
+  // logo depois da primeira renderização do componente.
   useEffect(() => {
     const temporizador = window.setTimeout(() => {
       setIndicadores(indicadoresIniciais);
@@ -30,96 +29,77 @@ function App() {
     }, 1200);
 
     // Esta função de limpeza remove o temporizador caso o componente seja desmontado
-    // antes da simulação terminar. Isso evita efeitos pendentes na aplicação.
+    // antes do carregamento terminar, evitando efeito pendente na aplicação.
     return () => {
       window.clearTimeout(temporizador);
     };
   }, []);
 
-  // Este segundo useEffect atualiza o título da aba do navegador
-  // sempre que a quantidade de indicadores mudar.
-  // Isso mostra um exemplo de efeito reagindo a uma mudança específica de estado.
+  // Este useEffect reage à mudança na quantidade de indicadores.
+  // A cada alteração na lista, o título da aba do navegador é atualizado.
   useEffect(() => {
     document.title = `${indicadores.length} indicadores | PNP`;
   }, [indicadores.length]);
 
-  // Enquanto os dados iniciais estão sendo carregados, exibo apenas a tela de loading.
+  // Enquanto os dados iniciais estão sendo simulados, exibo a tela de loading.
   if (carregando) {
     return (
-      <div className="app">
+      <div className="app-page">
         <Header />
-        <Loading />
+        <main className="app-content">
+          <Loading />
+        </main>
         <Footer />
       </div>
     );
   }
 
   return (
-    <div className="app">
+    <div className="app-page">
       <Header />
 
-      <main className="container py-5">
+      <main className="app-content container py-5">
         <section className="mb-5">
-          <div className="row align-items-center g-4">
-            <div className="col-12 col-lg-7">
-              <span className="badge rounded-pill text-bg-primary mb-3">
-                <i className="bi bi-database-check me-2"></i>
-                Simulação de funcionalidade do TCC
-              </span>
+          <span className="badge rounded-pill text-bg-success mb-3">
+            <i className="bi bi-database-check me-2"></i>
+            Simulação de funcionalidade do TCC
+          </span>
 
-              <h2 className="display-6 fw-bold mb-3">
-                Coleta de sugestões para novos indicadores
-              </h2>
+          <h2 className="section-title fw-bold mb-3">
+            Coleta de sugestões para novos indicadores
+          </h2>
 
-              <p className="lead text-secondary mb-0">
-                Esta tela representa uma funcionalidade simulada em que o usuário
-                pode sugerir indicadores relacionados à Plataforma Nilo Peçanha.
-                Os dados são controlados pelo React, enviados entre componentes
-                e exibidos dinamicamente na interface.
-              </p>
-            </div>
-
-            <div className="col-12 col-lg-5">
-              <div className="card border-0 shadow-sm">
-                <div className="card-body p-4">
-                  <div className="d-flex align-items-center gap-3 mb-3">
-                    <div className="summary-icon">
-                      <i className="bi bi-lightning-charge"></i>
-                    </div>
-
-                    <div>
-                      <h3 className="h5 fw-bold mb-1">Conceitos aplicados</h3>
-                      <p className="text-secondary mb-0">
-                        useState, props, callback, onSubmit, useEffect,
-                        TypeScript e Bootstrap.
-                      </p>
-                    </div>
-                  </div>
-
-                  <p className="small text-secondary mb-0">
-                    O carregamento inicial foi simulado com useEffect para representar
-                    uma possível consulta a uma API ou base de dados externa.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <p className="lead text-secondary mb-0">
+            Esta tela representa uma funcionalidade simulada em que o usuário pode
+            sugerir indicadores relacionados à Plataforma Nilo Peçanha. Os dados
+            são controlados pelo React, enviados entre componentes e exibidos
+            dinamicamente na interface.
+          </p>
         </section>
 
         <ResumoIndicadores indicadores={indicadores} />
 
         <section>
-          <div className="d-flex align-items-center justify-content-between gap-3 mb-3">
+          <div className="d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-3 mb-3">
             <div>
-              <h2 className="h4 fw-bold mb-1">Indicadores carregados</h2>
+              <h2 className="section-title h4 fw-bold mb-1">
+                Indicadores carregados
+              </h2>
+
               <p className="text-secondary mb-0">
                 Lista inicial simulada a partir de dados organizados na pasta data.
               </p>
             </div>
+
+            <span className="badge rounded-pill text-bg-light border">
+              {indicadores.length} indicadores
+            </span>
           </div>
 
           <div className="row g-4">
             {indicadores.map((indicador) => (
+              // O map() transforma cada objeto da lista em um componente visual.
+              // A prop key usa o id único do indicador para ajudar o React a controlar a lista.
               <div className="col-12 col-md-6 col-xl-4" key={indicador.id}>
                 <IndicadorCard indicador={indicador} />
               </div>
