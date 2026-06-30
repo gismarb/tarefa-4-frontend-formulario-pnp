@@ -432,9 +432,9 @@ Após a publicação, o protótipo poderá ser acessado diretamente pelo navegad
 
 Acesse em:
 
-```text
 https://gismarb.github.io/tarefa-4-frontend-formulario-pnp/
-```
+
+Essa publicação permite visualizar o protótipo diretamente pelo navegador, sem necessidade de executar o projeto localmente.
 
 ---
 
