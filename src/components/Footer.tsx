@@ -4,7 +4,7 @@
 function Footer() {
   return (
     <footer className="app-footer">
-      <div className="container py-4">
+      <div className="container py-4 text-center">
         <p className="mb-0">
           Tarefa 4 - Front-End | Formulário React com Comunicação entre Componentes
         </p>
