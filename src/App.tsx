@@ -5,10 +5,15 @@ import './App.css';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import IndicadorCard from './components/IndicadorCard';
+import IndicadorForm from './components/IndicadorForm';
 import Loading from './components/Loading';
 import ResumoIndicadores from './components/ResumoIndicadores';
 import { indicadoresIniciais } from './data/indicadoresIniciais';
 import type { Indicador } from './types/Indicador';
+
+// Este tipo representa os dados que chegam do formulário.
+// O id ainda não vem do formulário porque ele é gerado aqui no componente pai.
+type NovoIndicador = Omit<Indicador, 'id'>;
 
 function App() {
   // Estado responsável por armazenar a lista de indicadores exibidos na tela.
@@ -40,6 +45,20 @@ function App() {
   useEffect(() => {
     document.title = `${indicadores.length} indicadores | PNP`;
   }, [indicadores.length]);
+
+  // Esta função é passada para o formulário por props.
+  // Quando o formulário é enviado, ele chama esta função e entrega os dados preenchidos.
+  function handleAdicionarIndicador(novoIndicador: NovoIndicador) {
+    const indicadorComId: Indicador = {
+      id: Date.now(),
+      ...novoIndicador,
+    };
+
+    // Aqui adiciono o novo indicador no início da lista.
+    // Uso a forma funcional do setState para garantir que estou trabalhando
+    // com a versão mais atual do estado.
+    setIndicadores((indicadoresAtuais) => [indicadorComId, ...indicadoresAtuais]);
+  }
 
   // Enquanto os dados iniciais estão sendo simulados, exibo a tela de loading.
   if (carregando) {
@@ -79,15 +98,18 @@ function App() {
 
         <ResumoIndicadores indicadores={indicadores} />
 
+        <IndicadorForm onAdicionarIndicador={handleAdicionarIndicador} />
+
         <section>
           <div className="d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-3 mb-3">
             <div>
               <h2 className="section-title h4 fw-bold mb-1">
-                Indicadores carregados
+                Indicadores sugeridos
               </h2>
 
               <p className="text-secondary mb-0">
-                Lista inicial simulada a partir de dados organizados na pasta data.
+                A lista combina os dados iniciais simulados com os novos indicadores
+                enviados pelo formulário.
               </p>
             </div>
 
