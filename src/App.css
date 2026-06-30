@@ -5,6 +5,64 @@
     linear-gradient(180deg, #f8fbff 0%, #eef4fb 100%);
 }
 
-.app-intro {
-  max-width: 760px;
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.app-header-icon,
+.summary-icon,
+.loading-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-header-icon {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 1.25rem;
+  color: #0d6efd;
+  background-color: rgba(13, 110, 253, 0.1);
+  font-size: 2rem;
+}
+
+.summary-icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 1rem;
+  color: #0d6efd;
+  background-color: rgba(13, 110, 253, 0.1);
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.summary-icon-danger {
+  color: #dc3545;
+  background-color: rgba(220, 53, 69, 0.1);
+}
+
+.loading-card {
+  max-width: 620px;
+}
+
+.loading-icon {
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 1.5rem;
+  color: #0d6efd;
+  background-color: rgba(13, 110, 253, 0.1);
+  font-size: 2.2rem;
+}
+
+.indicador-card {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.indicador-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 1rem 2rem rgba(15, 23, 42, 0.12) !important;
 }
